@@ -13,33 +13,33 @@ def display_weather():
     if 'message' in weather_data:
         print(f"Error: {weather_data['message']}")
     else:
-        print(f"Weather in London, Kentucky:")
+        print("Weather in London, Kentucky:", end=" ")
         for forecast in weather_data['list']:
             date_time = forecast['dt_txt']
             temperature = forecast['main']['temp']
-            print(f"Date/Time: {date_time}, Temperature: {temperature} K")
+            print(f"Date/Time: {date_time}, Temperature: {temperature} K,", end=" ")
 
 def display_wind_speed():
     weather_data = get_weather_data()
     if 'message' in weather_data:
         print(f"Error: {weather_data['message']}")
     else:
-        print(f"Wind Speed in London, Kentucky:")
+        print("Wind Speed in London, Kentucky:", end=" ")
         for forecast in weather_data['list']:
             date_time = forecast['dt_txt']
             wind_speed = forecast['wind']['speed']
-            print(f"Date/Time: {date_time}, Wind Speed: {wind_speed} m/s")
+            print(f"Date/Time: {date_time}, Wind Speed: {wind_speed} m/s,", end=" ")
 
 def display_pressure():
     weather_data = get_weather_data()
     if 'message' in weather_data:
         print(f"Error: {weather_data['message']}")
     else:
-        print(f"Pressure in London, Kentucky:")
+        print("Pressure in London, Kentucky:", end=" ")
         for forecast in weather_data['list']:
             date_time = forecast['dt_txt']
             pressure = forecast['main']['pressure']
-            print(f"Date/Time: {date_time}, Pressure: {pressure} hPa")
+            print(f"Date/Time: {date_time}, Pressure: {pressure} hPa,", end=" ")
 
 def main():
     print("Weather Data Program")
