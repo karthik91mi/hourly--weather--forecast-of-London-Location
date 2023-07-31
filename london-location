@@ -1,0 +1,44 @@
+import requests
+
+# Replace 'YOUR_API_KEY' with the actual API key for OpenWeatherMap.
+API_KEY = 'b6907d289e10d714a6e88b30761fae22'
+
+def get_weather_data(location):
+    base_url = f'https://api.openweathermap.org/data/2.5/forecast/hourly?q={location}&appid={API_KEY}'
+    response = requests.get(base_url)
+    data = response.json()
+    return data
+
+def display_weather_data(weather_data):
+    if 'message' in weather_data:
+        print(f"Error: {weather_data['message']}")
+    else:
+        print(f"Weather in {weather_data['city']['name']}, {weather_data['city']['country']}:")
+        for forecast in weather_data['list']:
+            date_time = forecast['dt_txt']
+            temperature = forecast['main']['temp']
+            wind_speed = forecast['wind']['speed']
+            pressure = forecast['main']['pressure']
+            print(f"Date/Time: {date_time}, Temperature: {temperature} K, Wind Speed: {wind_speed} m/s, Pressure: {pressure} hPa")
+
+def main():
+    print("Weather Data Program")
+    while True:
+        print("\nOptions:")
+        print("1. Get weather forecast for London")
+        print("0. Exit")
+
+        choice = input("Enter your choice (0-1): ")
+
+        if choice == '0':
+            print("Exiting the program.")
+            break
+        elif choice == '1':
+            location = 'London,uk'
+            weather_data = get_weather_data(location)
+            display_weather_data(weather_data)
+        else:
+            print("Invalid choice. Please enter a valid option (0-1).")
+
+if __name__ == "__main__":
+    main()
